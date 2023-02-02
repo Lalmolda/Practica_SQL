@@ -315,5 +315,14 @@ values ('003','004','2016-01-23', 950, 11500,'002');
 insert into practica.hist_revisiones(id_revision, id_coche, fecha_revision, importe_revision, km_revision, id_divisa)
 values ('004','004','2018-02-14', 1290.3, 31500,'002');
 
-select * from practica.coche
+--CONSULTA SQL LISTADO COCHES ACTIVOS
+
+select practica.coche.matricula, practica.marca.nombre as MARCA, practica.modelo.nombre as MODELO, practica.grupo_coche.nombre as GRUPO, practica.coche.fecha_compra, practica.coche.color, practica.coche.km_totales, practica.aseguradora.nombre as ASEGURADORA, practica.poliza.numero_poliza as NUM_POLIZA  
+from practica.coche
+inner join practica.modelo on practica.coche.id_modelo = practica.modelo.id_modelo
+inner join practica.marca on practica.modelo.id_marca = practica.marca.id_marca 
+inner join practica.grupo_coche on practica.marca.id_grupo  = practica.grupo_coche.id_grupo 
+inner join practica.poliza on practica.coche.id_poliza  = practica.poliza.id_poliza 
+inner join practica.aseguradora on practica.poliza.id_aseguradora = practica.aseguradora.id_aseguradora; 
+
 
